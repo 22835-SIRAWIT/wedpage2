@@ -1,81 +1,434 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>งานอดิเรก | My Portfolio</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ==============================
+           VIDEO BACKGROUND
+        ============================== */
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: -2;
+
+            pointer-events: none;
+        }
+
+
+        /* ==============================
+           DARK OVERLAY
+        ============================== */
+
+        .video-overlay {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            z-index: -1;
+
+            pointer-events: none;
+        }
+
+
+        /* ==============================
+           BODY
+        ============================== */
+
+        body {
+            position: relative;
+
+            min-height: 100vh;
+
+            background: transparent;
+        }
+
+
+        /* ==============================
+           GLASS HOBBY CARD
+        ============================== */
+
+        .hobby-card {
+
+            background: rgba(15, 15, 25, 0.55) !important;
+
+            backdrop-filter: blur(12px);
+
+            -webkit-backdrop-filter: blur(12px);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.35);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+
+        /* ==============================
+           HOVER EFFECT
+        ============================== */
+
+        .hobby-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: rgba(168, 85, 247, 0.8);
+
+            box-shadow:
+                0 15px 40px rgba(168, 85, 247, 0.25),
+                0 0 25px rgba(168, 85, 247, 0.15);
+        }
+
+
+        /* ==============================
+           CONTENT ABOVE VIDEO
+        ============================== */
+
+        .navbar,
+        .page-container,
+        footer {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* ==============================
+           FOOTER GLASS
+        ============================== */
+
+        footer {
+
+            background: rgba(0, 0, 0, 0.55) !important;
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 768px) {
+
+            .video-background {
+                object-position: center;
+            }
+
+            .video-overlay {
+                background: rgba(0, 0, 0, 0.62);
+            }
+
+        }
+
+    </style>
 </head>
+
+
 <body>
 
+
+    <!-- =================================
+         VIDEO BACKGROUND
+    ================================== -->
+
+    <video
+        class="video-background"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto">
+
+        <source src="att.FXz68X22zfmVW1pO0s4kaOpEI1lJA2Z7Nkdx3aq_KQg.mp4">
+
+        เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+
+    </video>
+
+
+    <!-- =================================
+         DARK OVERLAY
+    ================================== -->
+
+    <div class="video-overlay"></div>
+
+
+
+    <!-- =================================
+         NAVBAR
+    ================================== -->
+
     <nav class="navbar">
+
         <div class="nav-container">
-            <a href="index.html" class="logo">My<span>Portfolio</span></a>
+
+            <a href="index.html" class="logo">
+                My<span>Portfolio</span>
+            </a>
+
+
             <ul class="nav-links">
-                <li><a href="index.html">หน้าแรก</a></li>
-                <li><a href="profile.html">ประวัติส่วนตัว</a></li>
-                <li><a href="education.html">การศึกษา</a></li>
-                <li><a href="hobby.html" class="active">งานอดิเรก</a></li>
-                <li><a href="contact.html">ติดต่อ</a></li>
+
+                <li>
+                    <a href="index.html">
+                        หน้าแรก
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        ประวัติส่วนตัว
+                    </a>
+                </li>
+
+                <li>
+                    <a href="education.html">
+                        การศึกษา
+                    </a>
+                </li>
+
+                <li>
+                    <a href="hobby.html" class="active">
+                        งานอดิเรก
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        ติดต่อ
+                    </a>
+                </li>
+
             </ul>
+
         </div>
+
     </nav>
 
+
+
+    <!-- =================================
+         MAIN CONTENT
+    ================================== -->
+
     <main class="page-container fade-in-up">
+
+
         <div class="section-header">
-            <h2>งานอดิเรก & ความสนใจ <span>(Hobbies & Interests)</span></h2>
+
+            <h2>
+                งานอดิเรก & ความสนใจ
+                <span>(Hobbies & Interests)</span>
+            </h2>
+
             <div class="divider"></div>
+
         </div>
+
+
+
+        <!-- =================================
+             HOBBY GRID
+        ================================== -->
 
         <div class="hobby-grid">
-            <div class="hobby-card">
-                <div class="hobby-icon">💻</div>
-                <h3>เขียนโค้ด / เทคโนโลยี</h3>
-                <p>ชอบทดลองเขียนเว็บไซต์ ฝึกฝนภาษา HTML, CSS และติดตามข่าวสารเทคโนโลยีใหม่ๆ อยู่เสมอ</p>
-            </div>
-            
-            <div class="hobby-card">
-                <div class="hobby-icon">🎮</div>
-                <h3>เล่นเกม</h3>
-                <p>ชอบเล่นเกมแนว Strategy และแก้ไขปัญหา ซึ่งช่วยฝึกทักษะการคิดวิเคราะห์และการวางแผน</p>
-            </div>
+
+
+            <!-- CARD 1 -->
 
             <div class="hobby-card">
-                <div class="hobby-icon">⚽</div>
-                <h3>กีฬาฟุตบอล</h3>
-                <p>เล่นฟุตบอลกับเพื่อนๆ หลังเลิกเรียนเพื่อออกกำลังกายและฝึกการทำงานเป็นทีม</p>
+
+                <div class="hobby-icon">
+                    💻
+                </div>
+
+                <h3>
+                    เขียนโค้ด / เทคโนโลยี
+                </h3>
+
+                <p>
+                    ชอบทดลองเขียนเว็บไซต์ ฝึกฝนภาษา HTML, CSS
+                    และติดตามข่าวสารเทคโนโลยีใหม่ๆ อยู่เสมอ
+                </p>
+
             </div>
 
-            <div class="hobby-card">
-                <div class="hobby-icon">🎵</div>
-                <h3>ฟังเพลง</h3>
-                <p>ชอบฟังเพลงแนว Pop และ Acoustic ขณะทำการบ้านหรือเขียนโค้ดเพื่อสร้างสมาธิ</p>
-            </div>
+
+
+            <!-- CARD 2 -->
 
             <div class="hobby-card">
-                <div class="hobby-icon">🎬</div>
-                <h3>ดูภาพยนตร์ Sci-Fi</h3>
-                <p>ภาพยนตร์วิทยาศาสตร์และอวกาศเป็นสิ่งที่ช่วยจุดประกายจินตนาการและความคิดสร้างสรรค์ให้ผม</p>
+
+                <div class="hobby-icon">
+                    🎮
+                </div>
+
+                <h3>
+                    เล่นเกม
+                </h3>
+
+                <p>
+                    ชอบเล่นเกมแนว Strategy และแก้ไขปัญหา
+                    ซึ่งช่วยฝึกทักษะการคิดวิเคราะห์และการวางแผน
+                </p>
+
             </div>
 
+
+
+            <!-- CARD 3 -->
+
             <div class="hobby-card">
-                <div class="hobby-icon">📷</div>
-                <h3>ถ่ายภาพ</h3>
-                <p>ชอบใช้สมาร์ทโฟนถ่ายภาพวิวทิวทัศน์และมุมมองต่างๆ เพื่อเก็บเป็นความทรงจำ</p>
+
+                <div class="hobby-icon">
+                    ⚽
+                </div>
+
+                <h3>
+                    กีฬาฟุตบอล
+                </h3>
+
+                <p>
+                    เล่นฟุตบอลกับเพื่อนๆ หลังเลิกเรียน
+                    เพื่อออกกำลังกายและฝึกการทำงานเป็นทีม
+                </p>
+
             </div>
+
+
+
+            <!-- CARD 4 -->
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">
+                    🎵
+                </div>
+
+                <h3>
+                    ฟังเพลง
+                </h3>
+
+                <p>
+                    ชอบฟังเพลงแนว Pop และ Acoustic
+                    ขณะทำการบ้านหรือเขียนโค้ดเพื่อสร้างสมาธิ
+                </p>
+
+            </div>
+
+
+
+            <!-- CARD 5 -->
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">
+                    🎬
+                </div>
+
+                <h3>
+                    ดูภาพยนตร์ Sci-Fi
+                </h3>
+
+                <p>
+                    ภาพยนตร์วิทยาศาสตร์และอวกาศเป็นสิ่งที่ช่วย
+                    จุดประกายจินตนาการและความคิดสร้างสรรค์ให้ผม
+                </p>
+
+            </div>
+
+
+
+            <!-- CARD 6 -->
+
+            <div class="hobby-card">
+
+                <div class="hobby-icon">
+                    📷
+                </div>
+
+                <h3>
+                    ถ่ายภาพ
+                </h3>
+
+                <p>
+                    ชอบใช้สมาร์ทโฟนถ่ายภาพวิวทิวทัศน์
+                    และมุมมองต่างๆ เพื่อเก็บเป็นความทรงจำ
+                </p>
+
+            </div>
+
+
         </div>
+
     </main>
 
+
+
+    <!-- =================================
+         FOOTER
+    ================================== -->
+
     <footer>
+
         <div class="footer-content">
-            <p>&copy; 2026 สมชาย ใจดี | นักเรียนชั้น ม.3/1</p>
+
+            <p>
+                &copy; 2026 สิรวิชญ์ ตระกลบุษบง |
+                นักเรียนชั้น ม.3/2
+            </p>
+
+
             <div class="footer-links">
-                <a href="index.html">หน้าแรก</a> | 
-                <a href="contact.html">ติดต่อฉัน</a>
+
+                <a href="index.html">
+                    หน้าแรก
+                </a>
+
+                &nbsp; | &nbsp;
+
+                <a href="contact.html">
+                    ติดต่อฉัน
+                </a>
+
             </div>
+
         </div>
+
     </footer>
+
 
 </body>
 </html>
+```
