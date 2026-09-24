@@ -1,99 +1,920 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การศึกษา | My Portfolio</title>
+
+    <title>ประวัติการศึกษา | My Portfolio</title>
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            min-height: 100vh;
+            color: #fff;
+            background: #000;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           VIDEO BACKGROUND
+        ========================= */
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            z-index: -2;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           VIDEO OVERLAY
+        ========================= */
+
+        .video-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0.58);
+
+            z-index: -1;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: relative;
+            z-index: 10;
+
+            width: 100%;
+
+            background: rgba(0, 0, 0, 0.55);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 18px 30px;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+        /* Logo */
+
+        .logo {
+            text-decoration: none;
+
+            color: #fff;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #a855f7;
+        }
+
+
+        /* Navigation */
+
+        .nav-links {
+            list-style: none;
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            display: block;
+
+            padding: 10px 15px;
+
+            color: #ddd;
+
+            text-decoration: none;
+
+            font-size: 15px;
+
+            border-radius: 8px;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+
+            background: rgba(168, 85, 247, 0.2);
+
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #fff;
+
+            background: rgba(168, 85, 247, 0.35);
+
+            box-shadow:
+                0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .page-container {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding: 80px 30px 100px;
+        }
+
+
+        /* =========================
+           SECTION HEADER
+        ========================= */
+
+        .section-header {
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+
+            font-weight: 700;
+
+            text-shadow:
+                0 0 15px rgba(168, 85, 247, 0.5);
+        }
+
+        .section-header h2 span {
+            color: #a855f7;
+
+            font-size: 25px;
+        }
+
+        .divider {
+            width: 90px;
+            height: 4px;
+
+            margin: 18px auto 0;
+
+            border-radius: 10px;
+
+            background: linear-gradient(
+                90deg,
+                #7c3aed,
+                #c084fc
+            );
+
+            box-shadow:
+                0 0 15px rgba(168, 85, 247, 0.7);
+        }
+
+
+        /* =========================
+           EDUCATION LAYOUT
+        ========================= */
+
+        .education-layout {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 60px;
+
+            align-items: start;
+        }
+
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+
+            padding-left: 35px;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 10px;
+            top: 5px;
+            bottom: 5px;
+
+            width: 3px;
+
+            background: linear-gradient(
+                to bottom,
+                #7c3aed,
+                #c084fc,
+                #7c3aed
+            );
+
+            box-shadow:
+                0 0 12px rgba(168, 85, 247, 0.8);
+        }
+
+
+        /* Timeline item */
+
+        .timeline-item {
+            position: relative;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* Dot */
+
+        .timeline-dot {
+            position: absolute;
+
+            left: -32px;
+            top: 8px;
+
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: #a855f7;
+
+            border: 3px solid #fff;
+
+            box-shadow:
+                0 0 15px rgba(168, 85, 247, 0.9);
+        }
+
+
+        /* Timeline Card */
+
+        .timeline-content {
+            padding: 25px;
+
+            border-radius: 16px;
+
+            background: rgba(20, 20, 30, 0.65);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            transition: 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(8px);
+
+            border-color: rgba(168, 85, 247, 0.7);
+
+            box-shadow:
+                0 0 25px rgba(168, 85, 247, 0.25);
+        }
+
+        .timeline-content h4 {
+            color: #c084fc;
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            color: #ddd;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           HIGHLIGHT CARD
+        ========================= */
+
+        .highlight-card {
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: rgba(20, 20, 30, 0.7);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.35);
+
+            transition: 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(168, 85, 247, 0.6);
+
+            box-shadow:
+                0 15px 45px rgba(168, 85, 247, 0.2);
+        }
+
+
+        /* Header */
+
+        .highlight-header {
+            margin-bottom: 25px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .highlight-header h3 {
+            font-size: 23px;
+
+            color: #c084fc;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .edu-table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        .edu-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .edu-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .edu-table th,
+        .edu-table td {
+            padding: 18px 10px;
+
+            text-align: left;
+
+            vertical-align: top;
+        }
+
+        .edu-table th {
+            width: 35%;
+
+            color: #c084fc;
+
+            font-weight: 600;
+        }
+
+        .edu-table td {
+            color: #eee;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            position: relative;
+
+            z-index: 2;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 25px 30px;
+
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: #ccc;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #c084fc;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+
+            text-shadow:
+                0 0 10px #a855f7;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .nav-container {
+                flex-direction: column;
+
+                gap: 15px;
+
+                padding: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 3px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+
+                font-size: 13px;
+            }
+
+            .page-container {
+                padding: 55px 20px 80px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .section-header h2 span {
+                font-size: 20px;
+            }
+
+            .education-layout {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .highlight-card {
+                padding: 22px;
+            }
+
+            .edu-table th,
+            .edu-table td {
+                padding: 13px 7px;
+
+                font-size: 14px;
+            }
+        }
+
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
+
+        @media (max-width: 480px) {
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+
+                padding: 7px 8px;
+            }
+
+            .section-header {
+                margin-bottom: 40px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .section-header h2 span {
+                font-size: 17px;
+            }
+
+            .timeline-content h4 {
+                font-size: 17px;
+            }
+
+            .timeline-content p {
+                font-size: 13px;
+            }
+
+            .highlight-header h3 {
+                font-size: 19px;
+            }
+
+            .edu-table th {
+                width: 38%;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
 
+    <!-- =========================================
+         VIDEO BACKGROUND
+         เปลี่ยน background.mp4 เป็นชื่อไฟล์วิดีโอของคุณ
+    ========================================== -->
+
+    <video class="video-background"
+           autoplay
+           muted
+           loop
+           playsinline>
+
+        <source src="background.mp4" type="video/mp4">
+
+        เบราว์เซอร์ของคุณไม่รองรับการเล่นวิดีโอ
+    </video>
+
+
+    <!-- ชั้นมืดสำหรับทำให้ข้อความอ่านง่าย -->
+    <div class="video-overlay"></div>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================== -->
+
     <nav class="navbar">
+
         <div class="nav-container">
-            <a href="index.html" class="logo">My<span>Portfolio</span></a>
+
+            <a href="index.html" class="logo">
+                My<span>Portfolio</span>
+            </a>
+
             <ul class="nav-links">
-                <li><a href="index.html">หน้าแรก</a></li>
-                <li><a href="profile.html">ประวัติส่วนตัว</a></li>
-                <li><a href="education.html" class="active">การศึกษา</a></li>
-                <li><a href="hobby.html">งานอดิเรก</a></li>
-                <li><a href="contact.html">ติดต่อ</a></li>
+
+                <li>
+                    <a href="index.html">
+                        หน้าแรก
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        ประวัติส่วนตัว
+                    </a>
+                </li>
+
+                <li>
+                    <a href="education.html" class="active">
+                        การศึกษา
+                    </a>
+                </li>
+
+                <li>
+                    <a href="hobby.html">
+                        งานอดิเรก
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        ติดต่อ
+                    </a>
+                </li>
+
             </ul>
+
         </div>
+
     </nav>
 
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
     <main class="page-container fade-in-up">
+
         <div class="section-header">
-            <h2>ประวัติการศึกษา <span>(Education)</span></h2>
+
+            <h2>
+                ประวัติการศึกษา
+                <span>(Education)</span>
+            </h2>
+
             <div class="divider"></div>
+
         </div>
+
 
         <div class="education-layout">
-            <!-- ซ้าย: ไทม์ไลน์ -->
+
+
+            <!-- =================================
+                 LEFT : TIMELINE
+            ================================== -->
+
             <div class="timeline-section">
+
                 <div class="timeline">
+
+
+                    <!-- ม.3 -->
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h4>ปัจจุบัน (มัธยมศึกษาปีที่ 3)</h4>
-                            <p>โรงเรียนมัธยมศึกษาแห่งหนึ่ง</p>
+
+                            <h4>
+                                ปัจจุบัน (มัธยมศึกษาปีที่ 3)
+                            </h4>
+
+                            <p>
+                                โรงเรียนมัธยมศึกษาแห่งหนึ่ง
+                            </p>
+
                         </div>
+
                     </div>
+
+
+                    <!-- ม.1 - ม.2 -->
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h4>มัธยมศึกษาตอนต้น (ม.1 - ม.2)</h4>
-                            <p>โรงเรียนมัธยมศึกษาแห่งหนึ่ง</p>
+
+                            <h4>
+                                มัธยมศึกษาตอนต้น (ม.1 - ม.2)
+                            </h4>
+
+                            <p>
+                                โรงเรียนมัธยมศึกษาแห่งหนึ่ง
+                            </p>
+
                         </div>
+
                     </div>
+
+
+                    <!-- ป.1 - ป.6 -->
+
                     <div class="timeline-item">
+
                         <div class="timeline-dot"></div>
+
                         <div class="timeline-content">
-                            <h4>ประถมศึกษา (ป.1 - ป.6)</h4>
-                            <p>โรงเรียนประถมศึกษาแห่งหนึ่ง</p>
+
+                            <h4>
+                                ประถมศึกษา (ป.1 - ป.6)
+                            </h4>
+
+                            <p>
+                                โรงเรียนประถมศึกษาแห่งหนึ่ง
+                            </p>
+
                         </div>
+
                     </div>
+
+
                 </div>
+
             </div>
 
-            <!-- ขวา: ข้อมูล Highlight -->
+
+            <!-- =================================
+                 RIGHT : HIGHLIGHT
+            ================================== -->
+
             <div class="highlight-section">
+
                 <div class="highlight-card">
+
+
                     <div class="highlight-header">
-                        <h3>📍 ข้อมูลปัจจุบัน</h3>
+
+                        <h3>
+                            📍 ข้อมูลปัจจุบัน
+                        </h3>
+
                     </div>
+
+
                     <table class="edu-table">
+
                         <tr>
-                            <th>โรงเรียน</th>
-                            <td>โรงเรียนมัธยมศึกษาแห่งหนึ่ง</td>
+
+                            <th>
+                                โรงเรียน
+                            </th>
+
+                            <td>
+                                โรงเรียนมัธยมศึกษาแห่งหนึ่ง
+                            </td>
+
                         </tr>
+
+
                         <tr>
-                            <th>ระดับชั้น</th>
-                            <td>ม.3 / ห้อง 2</td>
+
+                            <th>
+                                ระดับชั้น
+                            </th>
+
+                            <td>
+                                ม.3 / ห้อง 2
+                            </td>
+
                         </tr>
+
+
                         <tr>
-                            <th>สายการเรียน</th>
-                            <td>วิทยาศาสตร์ - คณิตศาสตร์</td>
+
+                            <th>
+                                สายการเรียน
+                            </th>
+
+                            <td>
+                                วิทยาศาสตร์ - คณิตศาสตร์
+                            </td>
+
                         </tr>
+
+
                         <tr>
-                            <th>วิชาที่ชอบ</th>
-                            <td>💻 คอมพิวเตอร์, 📐 คณิตศาสตร์</td>
+
+                            <th>
+                                วิชาที่ชอบ
+                            </th>
+
+                            <td>
+                                💻 คอมพิวเตอร์,
+                                📐 คณิตศาสตร์
+                            </td>
+
                         </tr>
+
+
                     </table>
+
                 </div>
+
             </div>
+
         </div>
+
     </main>
 
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
     <footer>
+
         <div class="footer-content">
-            <p>&copy; 2026 ด.ช.สิรวิชญ์ ตระกลบุษบง | นักเรียนชั้น ม.3/2</p>
+
+            <p>
+                &copy; 2026 ด.ช.สิรวิชญ์ ตระกลบุษบง |
+                นักเรียนชั้น ม.3/2
+            </p>
+
             <div class="footer-links">
-                <a href="index.html">หน้าแรก</a> | 
-                <a href="contact.html">ติดต่อฉัน</a>
+
+                <a href="index.html">
+                    หน้าแรก
+                </a>
+
+                &nbsp; | &nbsp;
+
+                <a href="contact.html">
+                    ติดต่อฉัน
+                </a>
+
             </div>
+
         </div>
+
     </footer>
 
 </body>
 </html>
+```
